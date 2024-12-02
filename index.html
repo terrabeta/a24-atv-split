@@ -22,92 +22,113 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
-<script>
-    // Function to get current date and time
-    function getDateTime() {
-        var now = new Date();
-        var year = now.getFullYear();
-        var month = now.getMonth() + 1;
-        var day = now.getDate();
-        var hour = now.getHours();
-        var minute = now.getMinutes();
-        var second = now.getSeconds();
-        if (month.toString().length == 1) {
-            month = "0" + month;
-        }
-        if (day.toString().length == 1) {
-            day = "0" + day;
-        }
-        if (hour.toString().length == 1) {
-            hour = "0" + hour;
-        }
-        if (minute.toString().length == 1) {
-            minute = "0" + minute;
-        }
-        if (second.toString().length == 1) {
-            second = "0" + second;
-        }
-        var dateTime = day + "/" + month + "/" + year + "  " + hour + ":" + minute + ":" + second;
-        return dateTime;
-    }
-    // Example usage: realtime clock
-    setInterval(function () {
-        currentTime = getDateTime();
-        document.getElementById("date-clock").innerHTML = currentTime;
-    }, 1000);
-</script>
+        <script>
+            function getDateTime() {
+                var now = new Date();
+                var year = now.getFullYear();
+                var month = now.getMonth() + 1;
+                var day = now.getDate();
+                var hour = now.getHours();
+                var minute = now.getMinutes();
+                var second = now.getSeconds();
+                if (month.toString().length == 1) {
+                    month = "0" + month;
+                }
+                if (day.toString().length == 1) {
+                    day = "0" + day;
+                }
+                if (hour.toString().length == 1) {
+                    hour = "0" + hour;
+                }
+                if (minute.toString().length == 1) {
+                    minute = "0" + minute;
+                }
+                if (second.toString().length == 1) {
+                    second = "0" + second;
+                }
+                var dateTime = day + "/" + month + "/" + year + "  " + hour + ":" + minute + ":" + second;
+                return dateTime;
+            }
+            // example usage: realtime clock
+            setInterval(function () {
+                currentTime = getDateTime();
+                document.getElementById("date-clock").innerHTML = currentTime;
+            }, 1000);
+        </script>
+    </head>
 
-<body class="body">
-    <div class="header wf-section">
-        <div class="date-clock w-embed">
-            <div id="date-clock"></div>
-        </div>
-    </div>
-
-    <div class="live-grid wf-section">
-        <div class="w-layout-grid live-vid-grid">
-            <!-- Action 24 Video -->
-            <div class="a24-strm-ttl-mob-view">A24</div>
-            <div class="a24-strm-live-vid w-embed w-script">
-                <video id="a24-strm" width="100%" height="100%" autoplay muted playsinline></video>
-                <script>
-                    var video = document.getElementById("a24-strm");
-                    var videoSrc = "https://actionlive.siliconweb.com/actionabr/actiontv/actionlive/actiontv_source/chunks.m3u8";
-                    if (Hls.isSupported()) {
-                        var hls = new Hls();
-                        hls.loadSource(videoSrc);
-                        hls.attachMedia(video);
-                    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                        video.src = videoSrc;
-                    }
-                    // Set additional properties to ensure correct autoplay behavior on iOS
-                    video.muted = true; // Ensure video is muted for autoplay
-                    video.autoplay = true; // Ensure autoplay is enabled
-                    video.playsinline = true; // Prevent full-screen playback on iOS
-                </script>
-            </div>
-
-            <!-- Attica TV Video -->
-            <div class="atv-strm-ttl-mob-view">ATTICA TV</div>
-            <div class="atv-strm-live-vid w-embed w-script">
-                <video id="atv-strm" width="100%" height="100%" autoplay muted playsinline></video>
-                <script>
-                    var video = document.getElementById("atv-strm");
-                    var videoSrc = "https://atticatv.siliconweb.com/atticatv/atticaliveabr/atticatv/atticalive/chunks.m3u8";
-                    if (Hls.isSupported()) {
-                        var hls = new Hls();
-                        hls.loadSource(videoSrc);
-                        hls.attachMedia(video);
-                    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                        video.src = videoSrc;
-                    }
-                    // Set additional properties to ensure correct autoplay behavior on iOS
-                    video.muted = true; // Ensure video is muted for autoplay
-                    video.autoplay = true; // Ensure autoplay is enabled
-                    video.playsinline = true; // Prevent full-screen playback on iOS
-                </script>
+    <body class="body">
+        <div class="header wf-section">
+            <div class="date-clock w-embed">
+                <div id="date-clock"></div>
             </div>
         </div>
-    </div>
-</body>
+        <div class="live-grid wf-section">
+            <div class="w-layout-grid live-vid-grid">
+                <div class="a24-strm-ttl-mob-view">ACTION 24</div>
+                <div class="a24-strm-live-vid w-embed w-script">
+                    <video id="a24-strm" controls="" autoplay="" width="100%" height="100%"></video>
+                    <script>
+                        var video = document.getElementById("a24-strm");
+                        var videoSrc = "https://actionlive.siliconweb.com/actionabr/actiontv/actionlive/actiontv_source/chunks.m3u8";
+                        if (Hls.isSupported()) {
+                            var hls = new Hls();
+                            hls.loadSource(videoSrc);
+                            hls.attachMedia(video);
+                        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                            video.src = videoSrc;
+                        }
+                        video.muted = "muted";
+                        video.autoplay = "autoplay";
+                        video.playsinline = "true";
+                    </script>
+                </div>
+                <div class="atv-strm-ttl-mob-view">ATTICA TV</div>
+                <div class="atv-strm-live-vid w-embed w-script">
+                    <video id="atv-strm" controls="" autoplay="" width="100%" height="100%"></video>
+                    <script>
+                        var video = document.getElementById("atv-strm");
+                        var videoSrc = "https://atticatv.siliconweb.com/atticatv/atticaliveabr/atticatv/atticalive/chunks.m3u8";
+                        if (Hls.isSupported()) {
+                            var hls = new Hls();
+                            hls.loadSource(videoSrc);
+                            hls.attachMedia(video);
+                        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                            video.src = videoSrc;
+                        }
+                        video.muted = "muted";
+                        video.autoplay = "autoplay";
+                        video.playsinline = "true";
+                    </script>
+                </div>
+            </div>
+            <div class="w-layout-grid ttl-grid">
+                <div class="a24-strm-ttl">ACTION 24</div>
+                <div class="atv-strm-ttl">ATTICA TV</div>
+            </div>
+            <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=617bb187e64953a331feaf9d" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+            <script src="js/webflow.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script>
+            <style>
+                body {
+                    font-family: "Space Mono", monospace;
+                }
+
+                ::selection {
+                    background: #ffffff;
+                    color: #000000;
+                }
+
+                ::-moz-selection {
+                    background: #ffffff;
+                    color: #000000;
+                }
+
+                video {
+                    display: grid;
+                    object-fit: fill;
+                }
+            </style>
+        </div>
+    </body>
 </html>
